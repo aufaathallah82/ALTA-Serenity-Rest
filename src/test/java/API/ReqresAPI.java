@@ -1,6 +1,7 @@
 package API;
 
 import java.io.File;
+import java.net.URI;
 
 import Utils.Constant;
 import io.restassured.http.ContentType;
@@ -9,14 +10,17 @@ import net.thucydides.core.annotations.Step;
 
 public class ReqresAPI {
 
-    public String GET_LIST_USERS = Constant.URL+"/api/users?page={page}";
+    public static final String URL = "https://reqres.in";
+    public static final String DIR = System.getProperty("user.dir");
+
+    public  String GET_LIST_USERS = Constant.URL+"/api/users?page={page}";
     public String GET_SINGLE_USER = Constant.URL+"/api/users/{id}";
-    public String POST_CREATE_NEW_USER = Constant.URL+"/api/users";
-    public String PUT_UPDATE_USER = Constant.URL+"/api/users/{id}";
-    public String DELETE_USER = Constant.URL+"/api/users/{id}";
+    public static String POST_CREATE_USER = Constant.URL+"/api/users";
+    public static String PUT_UPDATE_USER = Constant.URL+"/api/users/{id}";
+    public static String DELETE_USER = Constant.URL+"/api/users/{id}";
 
     @Step("Get list user")
-    public void getListUser(int page){
+    public void getListUser(String page){
         SerenityRest.given()
                 .pathParam("page",page);
     }
@@ -25,8 +29,8 @@ public class ReqresAPI {
         SerenityRest.given()
                 .pathParam("id",id);
     }
-    @Step("Post Create new user")
-    public void postCreateNewUser(File json) {
+    @Step("Post Create user")
+    public void postCreateUser(File json) {
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);

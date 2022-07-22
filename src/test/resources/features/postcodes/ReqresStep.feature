@@ -28,12 +28,12 @@ Feature: Test API using web Reqres.io
     Given Post Create new user with valid json schema
     When Send request create new user
     Then Should return status code 201 created
-    And Success create new user with valid json schema And Validation Json schema
+    And Response body should contain name "aufa" and job "QA ID"
   Scenario Outline: Put update user
     Given Put edit user id <id> with valid json schema
     When Send request put update user
-    Then Should return status code 200
-    And Success update user with valid json schema And Validation Json schema
+    Then Should return status code 200 OK
+    And Response body should contain name "Wisnu Munawar" and job "QA Engineer"
     Examples:
       |id|
       |2 |
@@ -45,3 +45,28 @@ Feature: Test API using web Reqres.io
     Examples:
       |id|
       |2 |
+  Scenario Outline: Get list user
+    Given Get list user with parameter "<parameter>"
+    When Send request get list user
+    Then Should return status code 200 OK
+    And Response body should contain first name "<firstName>" and last name "<lastName>"
+    Examples:
+      |parameter|firstName|lastName|
+      |1        |George  |Bluth    |
+      |2        |Michael |Lawson   |
+  @regression
+  Scenario: Post create user
+    Given Post create new user with valid json file
+    When Send request post create user
+    Then Status code should be 201 Created
+    And Response body should contain name "Wisnu Munawar" and job "QA Engineer"
+  Scenario Outline: Put update user
+    Given Put update user with id <id> and with valid json file
+    When Send request put update user
+    Then Status code should be 200 OK
+    And Response body should contain name "Wisnu Munawar Update" and job "QA Engineer Update"
+    Examples:
+      |id|
+      |1 |
+      |2 |
+
