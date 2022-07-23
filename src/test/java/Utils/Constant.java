@@ -10,4 +10,5 @@ public class Constant {
     public static final String LAST_NAME = "data.last_name[0]";
     public static final String NAME = "name";
     public static final String JOB = "job";
+    public static final String DATA_SIZE = "data.size";
 }

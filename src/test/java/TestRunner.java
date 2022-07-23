@@ -6,8 +6,7 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "classpath:Features/reqres",
-        tags = "@smoke and @regression"
+        features = "classpath:Features/reqres"
 )
 public class TestRunner {
 }

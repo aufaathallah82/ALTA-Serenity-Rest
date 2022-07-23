@@ -1,6 +1,6 @@
 Feature: Test API using web Reqres.io
   Scenario Outline: Get list user with parameter
-    Given Get list user with parameter page <page>
+    Given Get list user with parameter page "<page>"
     When Send request get list user
     Then Should return status code 200 and Success get list user with page <page>
     Examples:
@@ -8,9 +8,9 @@ Feature: Test API using web Reqres.io
       |1   |
       |2   |
   Scenario Outline: Get list user with exceeds total pages
-    Given Get list user with parameter page <page>
+    Given Get list user with parameter page "<page>"
     When Send request get list user
-    Then Should return status code 404 not found and Failed get list user with page <page>
+    Then Should return status code 200 not found and Failed get data
     Examples:
      |page|
      |1000 |
@@ -33,7 +33,7 @@ Feature: Test API using web Reqres.io
     Given Put edit user id <id> with valid json schema
     When Send request put update user
     Then Should return status code 200 OK
-    And Response body should contain name "Wisnu Munawar" and job "QA Engineer"
+    And Response body should contain name "aufa" and job "QA ID"
     Examples:
       |id|
       |2 |
@@ -55,16 +55,16 @@ Feature: Test API using web Reqres.io
       |1        |George  |Bluth    |
       |2        |Michael |Lawson   |
   @regression
-  Scenario: Post create user
+  Scenario: Post create user with json
     Given Post create new user with valid json file
     When Send request post create user
     Then Status code should be 201 Created
-    And Response body should contain name "Wisnu Munawar" and job "QA Engineer"
-  Scenario Outline: Put update user
+    And Response body should contain name "aufa" and job "QA ID"
+  Scenario Outline: Put update user with json
     Given Put update user with id <id> and with valid json file
     When Send request put update user
     Then Status code should be 200 OK
-    And Response body should contain name "Wisnu Munawar Update" and job "QA Engineer Update"
+    And Response body should contain name "aufa" and job "QA ID"
     Examples:
       |id|
       |1 |
