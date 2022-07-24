@@ -11,4 +11,6 @@ public class Constant {
     public static final String NAME = "name";
     public static final String JOB = "job";
     public static final String DATA_SIZE = "data.size";
+    public static final String EMAIL = "email";
+    public static final String PASSWORD = "password";
 }

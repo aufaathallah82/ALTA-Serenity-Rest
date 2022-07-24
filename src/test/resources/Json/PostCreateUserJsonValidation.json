@@ -13,12 +13,20 @@
     },
     "createdAt": {
       "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
     }
   },
   "required": [
     "name",
     "job",
     "id",
-    "createdAt"
+    "createdAt",
+    "email",
+    "password"
   ]
 }

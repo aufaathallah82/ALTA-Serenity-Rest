@@ -198,4 +198,48 @@ public class ReqresStep extends ReqresAPI {
         SerenityRest.then().statusCode(statuscode)
                 .body(Constant.DATA_SIZE,equalTo(null));
     }
+
+    @When("Send request get single source")
+    public void sendRequestGetSingleSource() {
+        SerenityRest.when().get(GET_SINGLE_SOURCE);
+    }
+    @Given("Post Create new user in register with valid json schema")
+    public void postCreateNewUserInRegisterWithValidJsonSchema() {
+        File json = new File(Constant.JSON_DATA + "/CreateUserRegister.json");
+        reqresAPI.postCreateRegisterUser(json);
+    }
+    @When("Send request create new user in register")
+    public void sendRequestCreateNewUserInRegister() {
+        SerenityRest.when().post(POST_REGISTER);
+    }
+    @And("Response body should contain email {string} and password {string}")
+    public void responseBodyShouldContainEmailAndPassword(String email, String password) {
+        SerenityRest.then().body(Constant.EMAIL, equalTo(email));
+        SerenityRest.then().body(Constant.PASSWORD, equalTo(password));
+    }
+    @Given("Get single register with id {string}")
+    public void getSingleRegisterWithId(String id) {
+        reqresAPI.getSingleRegister(0);
+    }
+    @Given("Get list register with parameter page {string}")
+    public void getListRegisterWithParameterPagePage(String page) {
+        reqresAPI.getListRegister(page);
+    }
+    @When("Send request get single register")
+    public void sendRequestGetSingleRegister() {
+        SerenityRest.when().get(GET_SINGLE_REGISTER);
+    }
+    @When("Send request get list register")
+    public void sendRequestGetListRegister() {
+        SerenityRest.when().get(POST_REGISTER_PAGE);
+    }
+    @Given("Post Create new user in login with valid json schema")
+    public void postCreateNewUserInLoginWithValidJsonSchema() {
+        File json = new File(Constant.JSON_DATA + "/Login.json");
+        reqresAPI.postCreateRegisterUser(json);
+    }
+    @When("Send request login")
+    public void sendRequestLogin() {
+        SerenityRest.when().post(POST_LOGIN);
+    }
 }

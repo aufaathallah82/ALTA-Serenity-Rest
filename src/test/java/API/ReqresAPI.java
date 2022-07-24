@@ -20,6 +20,10 @@ public class ReqresAPI {
     public static  String JSON_FILE = DIR+"/src/test/resources/json/";
     public static  String GET_LIST_SOURCE = Constant.URL+"/api/unknown";
     public static String GET_SINGLE_SOURCE = Constant.URL+"/api/unknown/{id}";
+    public static String POST_REGISTER = Constant.URL+"/api/register";
+    public static String POST_REGISTER_PAGE = Constant.URL+"/api/register?page={page}";
+    public static String GET_SINGLE_REGISTER = Constant.URL+"/api/unknown/{id}";
+    public static String POST_LOGIN = Constant.URL+"/api/login";
     @Step("Get list user")
     public void getListUser(String page){
         SerenityRest.given()
@@ -55,6 +59,22 @@ public class ReqresAPI {
     }
     @Step("Get single source")
     public void getSingleSource(int id){
+        SerenityRest.given()
+                .pathParam("id",id);
+    }
+    @Step("Post Create  Register user")
+    public void postCreateRegisterUser(File json) {
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+    @Step("Get list register")
+    public void getListRegister(String page) {
+        SerenityRest.given()
+                .pathParam("page", page);
+    }
+    @Step("Get single register")
+    public void getSingleRegister(int id){
         SerenityRest.given()
                 .pathParam("id",id);
     }
